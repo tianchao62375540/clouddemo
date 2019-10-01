@@ -8,3 +8,10 @@ logging:
     com.demo: debug
     #spring日志级别
     org.springframework: info
+spring:
+  application:
+    name: user-consume
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

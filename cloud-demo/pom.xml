@@ -10,6 +10,7 @@
     <modules>
         <module>user-service</module>
         <module>user-consume</module>
+        <module>eureka-server</module>
     </modules>
     <packaging>pom</packaging>
     <parent>
