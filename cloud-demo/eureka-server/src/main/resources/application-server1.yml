@@ -4,6 +4,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:10087/eureka
+  server:
+    enable-self-preservation: true
 spring:
   application:
     name: eureka-server
