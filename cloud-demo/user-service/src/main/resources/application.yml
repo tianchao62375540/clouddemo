@@ -22,9 +22,14 @@ mybatis:
   #mapper-locations: mapper/*.xml
   type-aliases-package: com.cloud.pojo
 eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
   client:
     service-url:
       defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka
+    #拉取时长
+    #fetch-remote-regions-registry: 5
   #配死服务
   #instance:
     #prefer-ip-address: true

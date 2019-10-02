@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,8 +29,10 @@ public class ConsumeController {
     /**
      * 发现客户端
      */
-    @Autowired
-    private DiscoveryClient discoveryClient;
+    //@Autowired
+    //private DiscoveryClient discoveryClient;
+    //@Autowired
+    //private RibbonLoadBalancerClient client;
 
     @GetMapping(value = "{id}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public User queryById(@PathVariable("id") Long id){
@@ -37,9 +40,12 @@ public class ConsumeController {
         //String url = "http://localhost:8081/user/"+id;
         //User user = restTemplate.getForObject(url,User.class);
         //根据服务id获取实例 （可能多个）
-        List<ServiceInstance> instances = discoveryClient.getInstances("user-server");
-        ServiceInstance instance = instances.get(0);
-        String url = "http://"+instance.getHost()+":"+instance.getPort()+"/user/"+id;
+        //List<ServiceInstance> instances = discoveryClient.getInstances("user-server");
+        //輪訓
+        //ServiceInstance instance = client.choose("user-server");
+        //ServiceInstance instance = instances.get(0);
+        //String url = "http://"+instance.getHost()+":"+instance.getPort()+"/user/"+id;
+        String url = "http://user-server/user/"+id;
         log.debug("调用url:"+url);
         final User user = restTemplate.getForObject(url, User.class);
         return user;

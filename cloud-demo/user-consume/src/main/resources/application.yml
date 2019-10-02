@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 7081
   servlet:
     context-path: /
 logging:
@@ -12,6 +12,14 @@ spring:
   application:
     name: user-consume
 eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 30
   client:
     service-url:
       defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka
+    #拉取时长
+    #fetch-remote-regions-registry: 5
+user-server:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule

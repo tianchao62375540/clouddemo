@@ -3,6 +3,7 @@ package com.consume;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,7 +20,9 @@ public class ConsumeApplication {
         SpringApplication.run(ConsumeApplication.class,args);
     }
 
+    //內置攔截器 攔截請求
     @Bean
+    @LoadBalanced
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
