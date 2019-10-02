@@ -20,9 +20,10 @@ eureka:
       defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka
     #拉取时长
     #fetch-remote-regions-registry: 5
-user-server:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#单纯ribbon
+#user-server:
+  #ribbon:
+    #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 #全局超市时长
 hystrix:
   command:
@@ -31,3 +32,12 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 3000
+
+#feign配置
+
+feign:
+  hystrix:
+    enabled: true
+#ribbon:
+  #ConnectionTimeOut: 500
+  #ReadTimeOut: 2000

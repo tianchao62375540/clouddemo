@@ -25,11 +25,22 @@ public class HelloController {
 
     @GetMapping("{id}")
     public User hello(@PathVariable("id") Long id){
-        try {
+        if(id%2==0){
+            throw new RuntimeException();
+        }
+        if(id==3){
+            try {
+                Thread.sleep(20000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        //休眠超时 是测试超时时间用的
+        /*try {
             Thread.sleep(2000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         return userService.queryById(id);
     }
 }

@@ -1,0 +1,16 @@
+1熔断器三个状态
+    1:关闭：请求正常通过
+    2:开启：请求被拦截:熔断器当发现请求到达阈值的时候（一定次数的请求的失败、超时次数）-》进入休眠状态n秒
+            再这n秒钟内，熔断器阻碍请求，n秒后进入半开状态，放入一部分请求
+    3：半开：当发现请求正常访问的时候进入关闭1状态，否则进入开启状态继续休眠n秒
+@HystrixCommand  HystrixCommandProperties
+commandProperties @HystrixProperty
+    1设置超时时间：execution.isolation.thread.timeoutInMilliseconds ==》default_executionTimeoutInMilliseconds=1000
+    2设置超时处理（或者异常的处理） fallbackMethod属性  直接跟方法名字
+    3设置阈值  1多少次统计一次： circuitBreaker.requestVolumeThreshold=>default_circuitBreakerRequestVolumeThreshold = 20次
+              上面这个属性代表20次统计一次
+              2休眠时间窗 circuitBreaker.sleepWindowInMilliseconds =>default_circuitBreakerSleepWindowInMilliseconds=5000 默认5秒
+              3统计百分比: circuitBreaker.errorThresholdPercentage=>default_circuitBreakerErrorThresholdPercentage
+                失败次数超过百分之50认为失败
+使用步骤：
+    1
