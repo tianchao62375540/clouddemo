@@ -1,7 +1,23 @@
 server:
   port: 10010
+  servlet:
+    context-path:
 zuul:
   routes:
-    hehe:
-      path: /user-service/**
-      url: http://127.0.0.1:8081
+    user-consume:
+      path: /consumer/**
+      serviceId: user-consume
+      stripPrefix: false
+      #path: /user-server/**
+      #serviceId: user-server
+      #url: http://127.0.0.1:8081
+  ignored-services:
+    - user-server
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka,http://localhost:10087/eureka
+spring:
+  application:
+    name: geteway
