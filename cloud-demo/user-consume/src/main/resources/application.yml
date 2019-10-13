@@ -38,6 +38,6 @@ hystrix:
 feign:
   hystrix:
     enabled: true
-#ribbon:
-  #ConnectionTimeOut: 500
-  #ReadTimeOut: 2000
+ribbon:
+  ConnectTimeout: 500
+  ReadTimeout: 2000

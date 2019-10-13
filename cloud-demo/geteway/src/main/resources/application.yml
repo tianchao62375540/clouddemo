@@ -12,8 +12,18 @@ zuul:
       #serviceId: user-server
       #url: http://127.0.0.1:8081
   ignored-services:
+    #- user-consume
     - user-server
-
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+ribbon:
+  ConnectTimeout: 500
+  ReadTimeout: 2000
 eureka:
   client:
     service-url:
